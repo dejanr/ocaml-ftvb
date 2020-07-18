@@ -1,10 +1,7 @@
 let
-  commit = "aa440d87866d43d463021b4ea2eaf3ac50d1f9a0"; # nixos-unstable on 2019-05-31
-  nixpkgs = builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs-channels/archive/${commit}.tar.gz";
-    sha256 = "152vdrdwnsd1nwj3mn4dy67wab4izaz84dalj54wi677zayacs9k";
-  };
-  pkgs = import nixpkgs { config = {}; };
+  sources = import ./nix/sources.nix;
+  nixpkgs = sources.nixpkgs;
+  pkgs = import nixpkgs {};
 
   ocamlPackages = pkgs.recurseIntoAttrs pkgs.ocamlPackages_latest;
   ocamlVersion = (builtins.parseDrvName ocamlPackages.ocaml.name).version;
@@ -26,6 +23,7 @@ pkgs.mkShell {
     utop
   ] ++ [
     pkgs.opam
+    pkgs.niv
   ];
 
   shellHook = ''

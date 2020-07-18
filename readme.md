@@ -6,16 +6,17 @@ It uses niv to pin nixpkgs to specific revision.
 Nix shell provides aliases for utop and ocaml, which are bootstrapped with ocamlinit,
 so that all nixpkgs ocaml packages are available.
 
-To enter sandboxed environment, use nix-shell:
+To enter sandboxed environment use :
 
 ```
-nix-shell
+$ nix-shell
 ```
 
-Or enable direnv with _direnv allow_, so that shell is auto executed whenever we enter the project:
+Another automated way of entering nix-shell is to use direnv.
+To enable direnv for our project we have to do:
 
 ```
-direnv allow
+$ direnv allow
 ```
 
 #### Dependencies:
